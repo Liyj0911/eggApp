@@ -5,7 +5,8 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  router.get('/', controller.home.index);
+  // 用于前端获取csrfToken
+  router.get('/csrf', controller.home.index);
   // 注册
   router.post('/register', controller.user.register);
 };
