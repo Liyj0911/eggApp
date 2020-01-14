@@ -7,6 +7,12 @@ class HomeController extends Controller {
     const { ctx } = this;
     ctx.body = { code: 200 };
   }
+
+  async test() {
+    const { ctx } = this;
+    console.log('解密数据', ctx.state);
+    ctx.helper.success(ctx.state);
+  }
 }
 
 module.exports = HomeController;
