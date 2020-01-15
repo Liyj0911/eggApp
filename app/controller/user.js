@@ -1,6 +1,7 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const assert = require('assert');
 
 // 定义请求参数的验证规则
 const createRule = {
@@ -19,9 +20,13 @@ const createRule = {
 
 class UserController extends Controller {
 
+  /**
+   * 注册
+   * @return {Promise<void>}
+   */
   async register() {
 
-    const { ctx, service, app } = this;
+    const { ctx, service } = this;
     ctx.validate(createRule, ctx.request.body);
     const { username, password } = ctx.request.body;
     const nowTime = new Date();
@@ -29,32 +34,25 @@ class UserController extends Controller {
       uid: ctx.helper.uid(),
       username,
       password,
-      create_time: nowTime,
-      update_time: nowTime,
+      createTime: nowTime,
+      updateTime: nowTime,
     };
     const result = await service.user.register(user);
-    if (result) {
-      // 生成 token 的方式
-      ctx.helper.success();
-    } else {
-      ctx.helper.fail(400, '用户名已存在');
-    }
+    assert(result, '用户名已存在');
+    ctx.helper.success();
   }
 
+  /**
+   * 登录
+   * @return {Promise<void>}
+   */
   async login() {
 
-    const { ctx, service, app } = this;
+    const { ctx, service } = this;
     ctx.validate(createRule, ctx.request.body);
     const result = await service.user.login(ctx.request.body);
-    if (result) {
-      // 生成token
-      const token = app.jwt.sign({ uid: result.uid }, app.config.jwt.secret, { expiresIn: '7d' });
-      delete result.password;
-      result.token = token;
-      ctx.helper.success(result);
-    } else {
-      ctx.helper.fail(400, '用户名或密码错误');
-    }
+    assert(result, '用户名或密码错误');
+    ctx.helper.success(result);
   }
 }
 
