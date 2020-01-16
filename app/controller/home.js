@@ -10,7 +10,6 @@ class HomeController extends Controller {
 
   async test() {
     const { ctx } = this;
-    console.log('解密数据', ctx.state);
     ctx.helper.success(ctx.state);
   }
 }

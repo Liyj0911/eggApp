@@ -4,7 +4,7 @@
  * @param {Egg.Application} app - egg application
  */
 module.exports = app => {
-  const { router, controller, jwt } = app;
+  const { router, controller, jwt, io } = app;
   // 用于前端获取csrfToken
   router.get('/csrf', controller.home.index);
   // 注册
@@ -13,4 +13,7 @@ module.exports = app => {
   router.post('/login', controller.user.login);
   // 测试解密token
   router.get('/test', jwt, controller.home.test);
+
+  // socket.io
+  io.of('/').route('chat', io.controller.chat.index);
 };

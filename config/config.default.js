@@ -62,6 +62,23 @@ module.exports = appInfo => {
     credentials: true,
   };
 
+  // socket.io
+  config.io = {
+    init: {},
+    namespace: {
+      '/': {
+        connectionMiddleware: [ 'auth' ],
+        packetMiddleware: [],
+      },
+    },
+    redis: {
+      host: '182.92.162.195',
+      port: 6379,
+      auth_pass: '17741224073',
+      db: 0,
+    },
+  };
+
   return {
     ...config,
     ...userConfig,

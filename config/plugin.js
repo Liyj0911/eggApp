@@ -26,4 +26,9 @@ module.exports = {
     enable: true,
     package: 'egg-jwt',
   },
+  // socket.io
+  io: {
+    enable: true,
+    package: 'egg-socket.io',
+  },
 };
