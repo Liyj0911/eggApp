@@ -13,7 +13,4 @@ module.exports = app => {
   router.post('/login', controller.user.login);
   // 测试解密token
   router.get('/test', jwt, controller.home.test);
-
-  // socket.io
-  io.of('/').route('chat', io.controller.chat.index);
 };

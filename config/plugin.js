@@ -18,17 +18,12 @@ module.exports = {
   },
   // mysql
   mysql: {
-    enable: true,
+    enable: false,
     package: 'egg-mysql',
   },
   // token
   jwt: {
     enable: true,
     package: 'egg-jwt',
-  },
-  // socket.io
-  io: {
-    enable: true,
-    package: 'egg-socket.io',
   },
 };
