@@ -62,7 +62,8 @@ module.exports = appInfo => {
     credentials: true,
   };
 
-  return {    ...config,
+  return {
+    ...config,
     ...userConfig,
   };
 };
