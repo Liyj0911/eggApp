@@ -21,28 +21,6 @@ const createRule = {
 class UserController extends Controller {
 
   /**
-   * 注册
-   * @return {Promise<void>}
-   */
-  async register() {
-
-    const { ctx, service } = this;
-    ctx.validate(createRule, ctx.request.body);
-    const { username, password } = ctx.request.body;
-    const nowTime = new Date();
-    const user = {
-      uid: ctx.helper.uid(),
-      username,
-      password,
-      createTime: nowTime,
-      updateTime: nowTime,
-    };
-    const result = await service.user.register(user);
-    assert(result, '用户名已存在');
-    ctx.helper.success();
-  }
-
-  /**
    * 登录
    * @return {Promise<void>}
    */

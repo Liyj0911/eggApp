@@ -18,7 +18,7 @@ module.exports = {
   },
   // mysql
   mysql: {
-    enable: false,
+    enable: true,
     package: 'egg-mysql',
   },
   // token

@@ -62,6 +62,13 @@ module.exports = appInfo => {
     credentials: true,
   };
 
+  // 关闭csrf
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
+
   return {
     ...config,
     ...userConfig,
